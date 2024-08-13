@@ -11,7 +11,7 @@ const ErrorPage = () => {
       </p>
       <div>
         <Link to={-1}>
-          <button className="btn text-white font-semibold text-xl bg-[#23BE0A]">
+          <button className="btn text-[#23BE0A] bg-white font-semibold text-lg border border-[#23BE0A]">
             Go Back
           </button>
         </Link>
