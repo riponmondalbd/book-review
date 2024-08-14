@@ -1,4 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DetailsBook = () => {
   const books = useLoaderData();
@@ -18,6 +20,13 @@ const DetailsBook = () => {
     yearOfPublishing,
     rating,
   } = book;
+
+  const handleReadBtn = () => {
+    toast("Added to Read");
+  };
+  const handleWishlistBtn = () => {
+    toast("Added to Wishlist");
+  };
 
   return (
     <div className="mx-2 mt-[52px] mb-[120px]">
@@ -64,15 +73,22 @@ const DetailsBook = () => {
             </div>
           </div>
           <div>
-            <button className="py-[18px] px-7 rounded-lg text-lg font-semibold border mr-4">
+            <button
+              onClick={handleReadBtn}
+              className="py-[18px] px-7 hover:bg-[#50B1C9] hover:text-white rounded-lg text-lg font-semibold border mr-4"
+            >
               Read
             </button>
-            <button className="py-[18px] px-7 rounded-lg text-lg font-semibold text-white bg-[#50B1C9]">
+            <button
+              onClick={handleWishlistBtn}
+              className="py-[18px] px-7 rounded-lg text-lg font-semibold text-white bg-[#50B1C9] hover:bg-white hover:text-black hover:border"
+            >
               Wishlist
             </button>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
