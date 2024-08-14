@@ -1,6 +1,6 @@
 [
   {
-    "bookId": 1,
+    "id": 1,
     "bookName": "The Silent Patient",
     "author": "Alex Michaelides",
     "image": "https://i.ibb.co/CBhB3fF/The-Silent-Patient.png",
@@ -13,7 +13,7 @@
     "yearOfPublishing": 2019
   },
   {
-    "bookId": 2,
+    "id": 2,
     "bookName": "Educated",
     "author": "Tara Westover",
     "image": "https://i.ibb.co/tZN4JdK/Educated.jpg",
@@ -26,7 +26,7 @@
     "yearOfPublishing": 2018
   },
   {
-    "bookId": 3,
+    "id": 3,
     "bookName": "Where the Crawdads Sing",
     "author": "Delia Owens",
     "image": "https://i.ibb.co/xYq0cxX/Where-the-Crawdads-Sing.jpg",
@@ -39,7 +39,7 @@
     "yearOfPublishing": 2018
   },
   {
-    "bookId": 4,
+    "id": 4,
     "bookName": "Becoming",
     "author": "Michelle Obama",
     "image": "https://i.ibb.co/QPKLvx0/Becoming.jpg",
@@ -52,7 +52,7 @@
     "yearOfPublishing": 2018
   },
   {
-    "bookId": 5,
+    "id": 5,
     "bookName": "The Alchemist",
     "author": "Paulo Coelho",
     "image": "https://i.ibb.co/X8fdc8M/The-Alchemist.jpg",
@@ -65,7 +65,7 @@
     "yearOfPublishing": 1988
   },
   {
-    "bookId": 6,
+    "id": 6,
     "bookName": "A Brief History of Humankind",
     "author": "Yuval Noah Harari",
     "image": "https://i.ibb.co/ScZkkWV/Sapiens-A-Brief-History-of-Humankind.jpg",
