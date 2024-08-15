@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { useLoaderData } from "react-router-dom";
-import { getToLocalStorage } from "../../utility/localstorage";
+import {
+  clearToLocalStorage,
+  getToLocalStorage,
+} from "../../utility/localstorage";
 import StoredBook from "../StoredBook/StoredBook";
 
 const ListedBooks = () => {
@@ -104,7 +107,7 @@ const ListedBooks = () => {
           role="tabpanel"
           className="tab-content bg-base-100 border-l-0 border-r-0 border-b-0 border-base-300"
         >
-          <div className="mt-8 mb-[120px]">
+          <div className="mt-8">
             {sortBook.map((book) => (
               <StoredBook key={book.id} book={book}></StoredBook>
             ))}
@@ -130,6 +133,15 @@ const ListedBooks = () => {
         </div>
       </div>
       {/* tab section end */}
+
+      <div className="text-center  mb-[120px]">
+        <button
+          onClick={clearToLocalStorage}
+          className="bg-[#23BE0A] text-xl font-medium py-[15px] px-[20px] rounded-lg text-white mt-12"
+        >
+          Clear All
+        </button>
+      </div>
     </div>
   );
 };

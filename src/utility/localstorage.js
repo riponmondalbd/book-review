@@ -13,5 +13,8 @@ const setToLocalStorage = (key, id) => {
     localStorage.setItem(key, JSON.stringify(setData));
   }
 };
+const clearToLocalStorage = () => {
+  localStorage.clear();
+};
 
-export { getToLocalStorage, setToLocalStorage };
+export { getToLocalStorage, setToLocalStorage, clearToLocalStorage };
