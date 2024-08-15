@@ -1,7 +1,10 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setToLocalStorage } from "../../utility/localstorage";
+import {
+  getToLocalStorage,
+  setToLocalStorage,
+} from "../../utility/localstorage";
 
 const DetailsBook = () => {
   const books = useLoaderData();
@@ -23,12 +26,24 @@ const DetailsBook = () => {
   } = book;
 
   const handleReadBtn = () => {
-    setToLocalStorage("books", idInt);
-    toast("Added to Read");
+    getToLocalStorage("books");
+    const bookAdded = getToLocalStorage("books").find((id) => id === idInt);
+    if (bookAdded) {
+      toast.error("Already Added");
+    } else {
+      setToLocalStorage("books", idInt);
+      toast("Added to Read");
+    }
   };
   const handleWishlistBtn = () => {
-    setToLocalStorage("wishlist", idInt);
-    toast("Added to Wishlist");
+    getToLocalStorage("books");
+    const bookAdded = getToLocalStorage("books").find((id) => id === idInt);
+    if (bookAdded) {
+      toast.error("Already Add to Read List");
+    } else {
+      setToLocalStorage("wishlist", idInt);
+      toast("Added to Wishlist");
+    }
   };
 
   return (
