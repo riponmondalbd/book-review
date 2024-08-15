@@ -78,19 +78,19 @@ const Navbar = () => {
             {link}
           </ul>
         </div>
-        <a className="btn btn-ghost text-[28px] text-[#131313] font-bold pl-0">
-          Book Vibe
-        </a>
+        <Link to={"/"}>
+          <a className="btn btn-ghost text-[28px] text-[#131313] font-bold pl-0">
+            Book Vibe
+          </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{link}</ul>
       </div>
       <div className="navbar-end gap-4">
-        <Link to={"/"}>
-          <button className=" text-lg rounded-lg font-semibold text-white py-1 md:py-[18px] px-3 md:px-[28px] bg-[#59C6D2]">
-            Sign Up
-          </button>
-        </Link>
+        <button className=" text-lg rounded-lg font-semibold text-white py-1 md:py-[18px] px-3 md:px-[28px] bg-[#59C6D2]">
+          Sign Up
+        </button>
 
         <button className="text-lg rounded-lg font-semibold text-white py-1 md:py-[18px] px-3 md:px-[28px] bg-[#23BE0A]">
           Sign In
