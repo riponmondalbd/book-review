@@ -1,6 +1,7 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { setToLocalStorage } from "../../utility/localstorage";
 
 const DetailsBook = () => {
   const books = useLoaderData();
@@ -22,9 +23,11 @@ const DetailsBook = () => {
   } = book;
 
   const handleReadBtn = () => {
+    setToLocalStorage("books", idInt);
     toast("Added to Read");
   };
   const handleWishlistBtn = () => {
+    setToLocalStorage("wishlist", idInt);
     toast("Added to Wishlist");
   };
 
