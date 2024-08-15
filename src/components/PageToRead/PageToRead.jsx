@@ -44,7 +44,7 @@ const PageToRead = () => {
   }, [books]);
 
   return (
-    <div className="px-[7px]">
+    <div className="px-[7px] bg-[#13131308] p-[121px] mb-[120px]">
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={bookList}
