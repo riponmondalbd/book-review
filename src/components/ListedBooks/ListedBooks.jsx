@@ -1,6 +1,28 @@
+import { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { useLoaderData } from "react-router-dom";
+import { getToLocalStorage } from "../../utility/localstorage";
+import StoredBook from "../StoredBook/StoredBook";
 
 const ListedBooks = () => {
+  const books = useLoaderData();
+  const [bookList, setBookList] = useState([]);
+  const [wishList, setWishList] = useState([]);
+
+  // console.log(books);
+
+  useEffect(() => {
+    const storedBooks = getToLocalStorage("books");
+    const storedWishList = getToLocalStorage("wishlist");
+    if (books.length > 0) {
+      const bookStored = books.filter((book) => storedBooks.includes(book.id));
+      const wishListStored = books.filter((book) =>
+        storedWishList.includes(book.id)
+      );
+      setBookList(bookStored);
+      setWishList(wishListStored);
+    }
+  }, [books]);
   return (
     <div className="px-[7px] mt-[36px]">
       <div className="text-center py-[34px] bg-[#1313130D] rounded-lg mb-8">
@@ -31,6 +53,47 @@ const ListedBooks = () => {
         </div>
       </div>
       {/* sorting end */}
+
+      {/* tab section start */}
+      <div role="tablist" className="tabs tabs-lifted">
+        <input
+          type="radio"
+          name="my_tabs_2"
+          role="tab"
+          className="tab text-lg font-normal"
+          aria-label="Read Books"
+          defaultChecked
+        />
+        <div
+          role="tabpanel"
+          className="tab-content bg-base-100 border-l-0 border-r-0 border-b-0 border-base-300"
+        >
+          <div className="mt-8 mb-[120px]">
+            {bookList.map((book) => (
+              <StoredBook key={book.id} book={book}></StoredBook>
+            ))}
+          </div>
+        </div>
+
+        <input
+          type="radio"
+          name="my_tabs_2"
+          role="tab"
+          className="tab text-lg font-normal"
+          aria-label="Wishlist Books"
+        />
+        <div
+          role="tabpanel"
+          className="tab-content bg-base-100 border-l-0 border-r-0 border-b-0 border-base-300"
+        >
+          <div className="mt-8">
+            {wishList.map((book) => (
+              <StoredBook key={book.id} book={book}></StoredBook>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* tab section end */}
     </div>
   );
 };
