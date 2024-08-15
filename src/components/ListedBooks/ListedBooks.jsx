@@ -8,8 +8,30 @@ const ListedBooks = () => {
   const books = useLoaderData();
   const [bookList, setBookList] = useState([]);
   const [wishList, setWishList] = useState([]);
+  const [sortBook, setSortBook] = useState([]);
+  const [sortWishlist, setSortWishList] = useState([]);
 
-  // console.log(books);
+  // console.log(bookList);
+
+  const handleFilter = (filter) => {
+    if (filter === "rating") {
+      setSortBook([...bookList].sort((a, b) => b.rating - a.rating));
+      setSortWishList([...wishList].sort((a, b) => b.rating - a.rating));
+      // console.log(ratings);
+    } else if (filter === "page") {
+      setSortBook([...bookList].sort((a, b) => b.totalPages - a.totalPages));
+      setSortWishList(
+        [...wishList].sort((a, b) => b.totalPages - a.totalPages)
+      );
+    } else if (filter === "year") {
+      setSortBook(
+        [...bookList].sort((a, b) => b.yearOfPublishing - a.yearOfPublishing)
+      );
+      setSortWishList(
+        [...wishList].sort((a, b) => b.yearOfPublishing - a.yearOfPublishing)
+      );
+    }
+  };
 
   useEffect(() => {
     const storedBooks = getToLocalStorage("books");
@@ -21,6 +43,8 @@ const ListedBooks = () => {
       );
       setBookList(bookStored);
       setWishList(wishListStored);
+      setSortBook(bookStored);
+      setSortWishList(bookStored);
     }
   }, [books]);
   return (
@@ -29,25 +53,37 @@ const ListedBooks = () => {
         <h1 className="text-[28px] font-bold">Books</h1>
       </div>
       {/* sorting start */}
-      <div className="text-center mb-14">
+      <div className="text-center mb-14 ">
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
             role="button"
-            className="py-[14px] px-[20px] m-1 bg-[#23BE0A] text-white rounded-lg flex items-center"
+            className="py-[14px] px-[50px] m-1 bg-[#23BE0A] text-white rounded-lg flex items-center"
           >
             <span className="text-lg font-semibold mr-4">Sort By</span>
             <IoIosArrowDown className="text-2xl" />
           </div>
           <ul
             tabIndex={0}
-            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow "
           >
-            <li className="hover:bg-[#23BE0A] hover:text-white hover:rounded-lg">
-              <a>Item 1</a>
+            <li
+              onClick={() => handleFilter("rating")}
+              className="hover:bg-[#23BE0A] hover:text-white hover:rounded-lg "
+            >
+              <a>Rating</a>
             </li>
-            <li className="hover:bg-[#23BE0A] hover:text-white hover:rounded-lg">
-              <a>Item 2</a>
+            <li
+              onClick={() => handleFilter("page")}
+              className="hover:bg-[#23BE0A] hover:text-white hover:rounded-lg"
+            >
+              <a>Number of pages</a>
+            </li>
+            <li
+              onClick={() => handleFilter("year")}
+              className="hover:bg-[#23BE0A] hover:text-white hover:rounded-lg"
+            >
+              <a>Publisher year</a>
             </li>
           </ul>
         </div>
@@ -69,7 +105,7 @@ const ListedBooks = () => {
           className="tab-content bg-base-100 border-l-0 border-r-0 border-b-0 border-base-300"
         >
           <div className="mt-8 mb-[120px]">
-            {bookList.map((book) => (
+            {sortBook.map((book) => (
               <StoredBook key={book.id} book={book}></StoredBook>
             ))}
           </div>
@@ -87,7 +123,7 @@ const ListedBooks = () => {
           className="tab-content bg-base-100 border-l-0 border-r-0 border-b-0 border-base-300"
         >
           <div className="mt-8">
-            {wishList.map((book) => (
+            {sortWishlist.map((book) => (
               <StoredBook key={book.id} book={book}></StoredBook>
             ))}
           </div>

@@ -38,8 +38,14 @@ const DetailsBook = () => {
   const handleWishlistBtn = () => {
     getToLocalStorage("books");
     const bookAdded = getToLocalStorage("books").find((id) => id === idInt);
+    getToLocalStorage("wishlist");
+    const wishListBookAdded = getToLocalStorage("wishlist").find(
+      (id) => id === idInt
+    );
     if (bookAdded) {
       toast.error("Already Add to Read List");
+    } else if (wishListBookAdded) {
+      toast.error("Already added");
     } else {
       setToLocalStorage("wishlist", idInt);
       toast("Added to Wishlist");
